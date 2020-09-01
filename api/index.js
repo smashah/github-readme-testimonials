@@ -13,11 +13,11 @@ module.exports = async (req, res) => {
     } = req.query;
     let stats;
   
-    res.setHeader("Content-Type", "image/svg+xml");
+    // res.setHeader("Content-Type", "image/svg+xml");
   
-    if (blacklist.includes(username)) {
-      return res.send(renderError("Something went wrong"));
-    }
+    // if (blacklist.includes(username)) {
+    //   return res.send(renderError("Something went wrong"));
+    // }
   
     try {
     //   stats = await fetchStats(
@@ -48,8 +48,7 @@ module.exports = async (req, res) => {
         //   text_color,
         //   bg_color,
         //   theme,
-        // }
-        )
+        // })
       );
     } catch (err) {
       return res.send(
