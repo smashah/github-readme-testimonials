@@ -52,7 +52,7 @@ module.exports = async (req, res) => {
       );
     } catch (err) {
       return res.send(
-          renderError(err.message, err.secondaryMessage).
-          );
+        'error'
+        );
     }
   };
