@@ -1,11 +1,11 @@
 require("dotenv").config();
-const {
-  renderError,
-  parseBoolean,
-  parseArray,
-  clampValue,
-  CONSTANTS,
-} = require("./utils");
+// const {
+//   renderError,
+//   parseBoolean,
+//   parseArray,
+//   clampValue,
+//   CONSTANTS,
+// } = require("./utils");
 
 module.exports = async (req, res) => {
     const {
@@ -26,13 +26,13 @@ module.exports = async (req, res) => {
     //     parseBoolean(include_all_commits)
     //   );
   
-      const cacheSeconds = clampValue(
-        parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
-        CONSTANTS.TWO_HOURS,
-        CONSTANTS.ONE_DAY
-      );
+      // const cacheSeconds = clampValue(
+      //   parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
+      //   CONSTANTS.TWO_HOURS,
+      //   CONSTANTS.ONE_DAY
+      // );
   
-      res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
+      // res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
   
       return res.send(issues
         // renderStatsCard(stats, {
