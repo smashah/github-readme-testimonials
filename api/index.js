@@ -5,7 +5,7 @@ const {
   parseArray,
   clampValue,
   CONSTANTS,
-} = require("../src/common/utils");
+} = require("./utils");
 
 module.exports = async (req, res) => {
     const {
