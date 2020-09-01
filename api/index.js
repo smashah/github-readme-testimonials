@@ -1,4 +1,5 @@
 require("dotenv").config();
+var htmlToImage = require('html-to-image');
 // const {
 //   renderError,
 //   parseBoolean,
@@ -33,8 +34,23 @@ module.exports = async (req, res) => {
       // );
   
       // res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
-  
-      return res.send(issues
+      const dataURl = await htmlToImage.toSvgDataURL(`
+      <div class="testimonial">
+	<div class="testimonial-profile">
+		<img src="https://randomuser.me/api/portraits/men/32.jpg" alt="user" />
+		<h3>@example</h3>
+	</div>
+	<div class="testimonial-body">
+		<p>
+			Florin is a front-end development master, delivering pixel-perfect css and
+			html designs. He is professional, highly available and delivers on his
+			promises - an all around pleasure to work with!
+		</p>
+		<i class="fas fa-quote-right"></i>
+	</div>
+</div>
+      `)
+      return res.send(dataURl
         // renderStatsCard(stats, {
         //   hide: parseArray(hide),
         //   show_icons: parseBoolean(show_icons),
