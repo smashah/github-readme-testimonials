@@ -1,7 +1,7 @@
 require("dotenv").config();
 const { getScreenshot } = require('./ppt');
 module.exports = async (req, res) => {
-  const {
+  let {
     issues
   } = req.query;
   // res.setHeader("Content-Type", "image/png");
