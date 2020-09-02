@@ -1,11 +1,10 @@
 const chromium = require('chrome-aws-lambda');
-const puppeteer = require('puppeteer');
 
 async function getScreenshot(url) {
-    browser = await puppeteer.launch({
-        // args: chromium.args,
-        // defaultViewport: chromium.defaultViewport,
-        // executablePath: await chromium.executablePath,
+    browser = await chromium.puppeteer.launch({
+        args: chromium.args,
+        defaultViewport: chromium.defaultViewport,
+        executablePath: await chromium.executablePath,
         headless: true,//chromium.headless,
         ignoreHTTPSErrors: true,
         defaultViewport: {
@@ -53,4 +52,4 @@ async function test(){
     return x;
 }
 
-test();
+// test();
