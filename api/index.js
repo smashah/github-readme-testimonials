@@ -43,22 +43,7 @@ module.exports = async (req, res) => {
 
     const x = await getScreenshot(comment);
 
-      return res.send(`data:image/png;base64,${x}`
-        // renderStatsCard(stats, {
-        //   hide: parseArray(hide),
-        //   show_icons: parseBoolean(show_icons),
-        //   hide_title: parseBoolean(hide_title),
-        //   hide_border: parseBoolean(hide_border),
-        //   hide_rank: parseBoolean(hide_rank),
-        //   include_all_commits: parseBoolean(include_all_commits),
-        //   line_height,
-        //   title_color,
-        //   icon_color,
-        //   text_color,
-        //   bg_color,
-        //   theme,
-        // })
-      );
+      return res.send(`data:image/png;base64,${x}`);
     } catch (err) {
       return res.send(
         err
