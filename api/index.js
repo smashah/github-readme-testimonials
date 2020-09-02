@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
   } = req.query;
 
   // res.setHeader("Content-Type", "image/png");
-  console.log("issues", issues)
+  console.log("issues", req.query, issues)
   try {
     // const cacheSeconds = clampValue(
     //   parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
@@ -31,7 +31,7 @@ module.exports = async (req, res) => {
     // res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
 
     const im = await getScreenshot(comment);
-    console.log("x ", im)
+    // console.log("x ", im)
 
     const img = Buffer.from(im, 'base64');
     res.writeHead(200, {
