@@ -30,8 +30,8 @@ module.exports = async (req, res) => {
     console.log("comment", comment)
     // res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
 
-    const img = await getScreenshot(comment);
-    console.log("x ", img)
+    const im = await getScreenshot(comment);
+    console.log("x ", im)
 
     const img = Buffer.from(im, 'base64');
     res.writeHead(200, {
