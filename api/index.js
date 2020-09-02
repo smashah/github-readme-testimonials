@@ -1,20 +1,11 @@
 require("dotenv").config();
-var htmlToImage = require('html-to-image');
-// const {
-//   renderError,
-//   parseBoolean,
-//   parseArray,
-//   clampValue,
-//   CONSTANTS,
-// } = require("./utils");
-
+const {getScreenshot} = require('./ppt');
 module.exports = async (req, res) => {
     const {
         issues
     } = req.query;
-    let stats;
   
-    // res.setHeader("Content-Type", "image/svg+xml");
+    res.setHeader("Content-Type", "image/png");
   
     // if (blacklist.includes(username)) {
     //   return res.send(renderError("Something went wrong"));
@@ -33,24 +24,16 @@ module.exports = async (req, res) => {
       //   CONSTANTS.ONE_DAY
       // );
   
+      const comments = [
+        'https://github.com/open-wa/wa-automate-nodejs/issues/747#issuecomment-682116171',
+        ...issues
+    ]
+    var comment = comments[Math.floor(Math.random() * comments.length)];
       // res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
-      const dataURl = await htmlToImage.toSvgDataURL(`
-      <div class="testimonial">
-	<div class="testimonial-profile">
-		<img src="https://randomuser.me/api/portraits/men/32.jpg" alt="user" />
-		<h3>@example</h3>
-	</div>
-	<div class="testimonial-body">
-		<p>
-			Florin is a front-end development master, delivering pixel-perfect css and
-			html designs. He is professional, highly available and delivers on his
-			promises - an all around pleasure to work with!
-		</p>
-		<i class="fas fa-quote-right"></i>
-	</div>
-</div>
-      `)
-      return res.send(dataURl
+
+    const x = await getScreenshot(comment);
+
+      return res.send(`data:image/png;base64,${x}`
         // renderStatsCard(stats, {
         //   hide: parseArray(hide),
         //   show_icons: parseBoolean(show_icons),
@@ -68,7 +51,7 @@ module.exports = async (req, res) => {
       );
     } catch (err) {
       return res.send(
-        'error'
+        err
         );
     }
   };

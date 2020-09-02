@@ -20,13 +20,16 @@
     "css-to-object": "^1.1.0",
     "husky": "^4.2.5",
     "jest": "^26.1.0",
-    "parse-diff": "^0.7.0"
+    "parse-diff": "^0.7.0",
+    "puppeteer": "^5.2.1"
   },
   "dependencies": {
+    "chrome-aws-lambda": "^5.2.1",
     "dotenv": "^8.2.0",
     "emoji-name-map": "^1.2.8",
     "github-username-regex": "^1.0.0",
     "html-to-image": "^0.1.1",
+    "puppeteer-core": "^5.2.1",
     "word-wrap": "^1.2.3"
   },
   "author": "SMASHAH <shah@idk.uno> (smashah.dev)",
