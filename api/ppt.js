@@ -1,6 +1,7 @@
 const chromium = require('chrome-aws-lambda');
 
 async function getScreenshot(url) {
+    console.log("getScreenshot -> url", url)
     browser = await chromium.puppeteer.launch({
         args: chromium.args,
         defaultViewport: chromium.defaultViewport,

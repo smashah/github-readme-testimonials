@@ -5,20 +5,9 @@ module.exports = async (req, res) => {
         issues
     } = req.query;
   
-    res.setHeader("Content-Type", "image/png");
+    // res.setHeader("Content-Type", "image/png");
     console.log("issues", issues)
-  
-    // if (blacklist.includes(username)) {
-    //   return res.send(renderError("Something went wrong"));
-    // }
-  
     try {
-    //   stats = await fetchStats(
-    //     username,
-    //     parseBoolean(count_private),
-    //     parseBoolean(include_all_commits)
-    //   );
-  
       // const cacheSeconds = clampValue(
       //   parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
       //   CONSTANTS.TWO_HOURS,
@@ -42,6 +31,7 @@ module.exports = async (req, res) => {
       // res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
 
     const x = await getScreenshot(comment);
+    console.log("x ", x )
 
       return res.send(`data:image/png;base64,${x}`);
     } catch (err) {
