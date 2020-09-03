@@ -42,7 +42,12 @@ module.exports = async (req, res) => {
       console.log("comment", comment)
       if (svg) {
         res.setHeader("Content-Type", "image/svg+xml");
-        return res.send(`<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><style>${svgCss}</style><circle class="loader-path" cx="50" cy="50" r="20" fill="none" stroke="#70c542" stroke-width="2"/><a xlink:href="${comment}"><image id="myimage" href="https://github-readme-testimonials.vercel.app/api?noCache=true&specificComment=${escape(comment)}"/></a></svg>`);
+        return res.send(`
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><style>${svgCss}</style><circle class="loader-path" cx="50" cy="50" r="20" fill="none" stroke="#70c542" stroke-width="2"/>
+        <a xlink:href="${comment}">
+        <image id="myimage" href="https://github-readme-testimonials.vercel.app/api?specificComment=${escape(comment)}"/>
+        </a>
+        </svg>`);
       }
       if(link) {
         return res.redirect(_comments[link]||comment);
