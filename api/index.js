@@ -17,13 +17,15 @@ module.exports = async (req, res) => {
     issues,
     svg,
     camo,
-    noCache = false
+    noCache = false,
+    cache_seconds
   } = req.query;
   console.log(
     issues,
     svg,
     camo,
-    noCache)
+    noCache,
+    cache_seconds)
   if (!noCache) {
     const cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
