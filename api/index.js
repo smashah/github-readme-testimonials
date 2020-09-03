@@ -18,9 +18,10 @@ module.exports = async (req, res) => {
     svg,
     camo,
     noCache = false,
-    cache_seconds
+    cache_seconds,
+    link = false
   } = req.query;
-  if (!noCache) {
+  if (!noCache && !link) {
     const cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
       CONSTANTS.TWO_HOURS,
@@ -37,6 +38,9 @@ module.exports = async (req, res) => {
     comments = JSON.parse(Buffer.from(comments, 'base64').toString('ascii').replace(/'/g, '"'));
     if (!comments.length) return false;
     var comment = comments[Math.floor(Math.random() * comments.length)];
+    if(link) {
+      return res.redirect(comments[link]||comment);
+    }
     const im = await getScreenshot(comment);
     const img = Buffer.from(im, 'base64');
     res.writeHead(200, {
