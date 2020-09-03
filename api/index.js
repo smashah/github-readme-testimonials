@@ -35,7 +35,7 @@ module.exports = async (req, res) => {
   try {
     if (svg) {
       res.setHeader("Content-Type", "image/svg+xml");
-      return res.send(`<svg xmlns="http://www.w3.org/2000/svg"><style>${svgCss}</style><a xlink:href="https://github-readme-testimonials.vercel.app/api?noCache=${noCache}&link=true&comments=${escape(`${comments}`)}"><circle class="loader-path" cx="50" cy="50" r="20" fill="none" stroke="#70c542" stroke-width="2"/><image id="myimage" href="https://github-readme-testimonials.vercel.app/api?comments=${escape(`${comments}`)}"/></a></svg>`);
+      return res.send(`<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><style>${svgCss}</style><a xlink:href="https://github-readme-testimonials.vercel.app/api?noCache=${noCache}&link=true&comments=${escape(`${comments}`)}"><circle class="loader-path" cx="50" cy="50" r="20" fill="none" stroke="#70c542" stroke-width="2"/><image id="myimage" href="https://github-readme-testimonials.vercel.app/api?comments=${escape(`${comments}`)}"/></a></svg>`);
     }
     comments = JSON.parse(Buffer.from(comments, 'base64').toString('ascii').replace(/'/g, '"'));
     if (!comments.length) return false;
