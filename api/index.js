@@ -33,15 +33,15 @@ module.exports = async (req, res) => {
     res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
   }
   try {
-    comments = JSON.parse(Buffer.from(comments, 'base64').toString('ascii').replace(/'/g, '"'));
-    if (!comments.length) return false;
-    var comment = comments[Math.floor(Math.random() * comments.length)];
+    let _comments = JSON.parse(Buffer.from(_comments, 'base64').toString('ascii').replace(/'/g, '"'));
+    if (!_comments.length) return false;
+    var comment = _comments[link] || _comments[Math.floor(Math.random() * _comments.length)];
     if (svg) {
       res.setHeader("Content-Type", "image/svg+xml");
-      return res.send(`<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><style>${svgCss}</style><a xlink:href="${comment}"><circle class="loader-path" cx="50" cy="50" r="20" fill="none" stroke="#70c542" stroke-width="2"/><image id="myimage" href="https://github-readme-testimonials.vercel.app/api?comments=${escape(`${comments}`)}"/></a></svg>`);
+      return res.send(`<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><style>${svgCss}</style><a xlink:href="${comment}"><circle class="loader-path" cx="50" cy="50" r="20" fill="none" stroke="#70c542" stroke-width="2"/><image id="myimage" href="https://github-readme-testimonials.vercel.app/api?comments=${comments}"/></a></svg>`);
     }
     if(link) {
-      return res.redirect(comments[link]||comment);
+      return res.redirect(_comments[link]||comment);
     }
     const im = await getScreenshot(comment);
     const img = Buffer.from(im, 'base64');
