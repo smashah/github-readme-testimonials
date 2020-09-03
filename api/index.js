@@ -60,6 +60,15 @@ module.exports = async (req, res) => {
       <a xlink:href="${comment}">
       <image id="myimage" href="data:image/png;base64,${im}"/>
       </a>
+      <a xlink:href="${comment}">
+      <text
+        font-weight="normal" fill="#008F68">
+          <tspan>
+            Link
+          </tspan>
+      </text>
+    </a>
+
       </svg>`);
     } else {
       const img = Buffer.from(im, 'base64');
