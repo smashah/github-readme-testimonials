@@ -26,6 +26,7 @@ module.exports = async (req, res) => {
     lazy = true,
     specificComment = false
   } = req.query;
+  if(lazy==="false") lazy = false;
   if (!noCache && !link) {
     const cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
