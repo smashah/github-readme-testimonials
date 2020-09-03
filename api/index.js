@@ -23,6 +23,7 @@ module.exports = async (req, res) => {
     noCache = false,
     cache_seconds,
     link = false,
+    lazy = true,
     specificComment = false
   } = req.query;
   if (!noCache && !link) {
@@ -42,6 +43,7 @@ module.exports = async (req, res) => {
       console.log("comment", comment)
       if (svg) {
         res.setHeader("Content-Type", "image/svg+xml");
+        if(lazy);
         return res.send(`
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><style>${svgCss}</style><circle class="loader-path" cx="50" cy="50" r="20" fill="none" stroke="#70c542" stroke-width="2"/>
         <a xlink:href="${comment}">
@@ -57,12 +59,21 @@ module.exports = async (req, res) => {
     }
     console.log("comment", comment)
     const im = await getScreenshot(comment);
-    const img = Buffer.from(im, 'base64');
-    res.writeHead(200, {
-      'Content-Type': 'image/png',
-      'Content-Length': img.length
-    });
-    return res.end(img);
+    if(svg && !lazy){
+      return res.send(`
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <a xlink:href="${comment}">
+      <image id="myimage" href="data:image/png;base64,${im}"/>
+      </a>
+      </svg>`);
+    } else {
+      const img = Buffer.from(im, 'base64');
+      res.writeHead(200, {
+        'Content-Type': 'image/png',
+        'Content-Length': img.length
+      });
+      return res.end(img);
+    }
   } catch (err) {
     return res.send(
       err
