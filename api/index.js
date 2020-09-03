@@ -35,7 +35,7 @@ module.exports = async (req, res) => {
   }
   try {
     let comment = '';
-    if(specificComment) {
+    if(!specificComment) {
       let _comments = JSON.parse(Buffer.from(comments, 'base64').toString('ascii').replace(/'/g, '"'));
       if (!_comments.length) return false;
       comment = specificComment || (_comments[link] || _comments[Math.floor(Math.random() * _comments.length)]);
