@@ -66,6 +66,28 @@ This is the same as the one in the header of this readme.
   <img src="https://github-readme-testimonials.vercel.app/api?comments=WwogICAgICAnaHR0cHM6Ly9naXRodWIuY29tL29wZW4td2Evd2EtYXV0b21hdGUtbm9kZWpzL2lzc3Vlcy83NDcjaXNzdWVjb21tZW50LTY4MjExNjE3MScsCiAgICAgICJodHRwczovL2dpdGh1Yi5jb20vb3Blbi13YS93YS1hdXRvbWF0ZS1ub2RlanMvaXNzdWVzLzMyNSNpc3N1ZWNvbW1lbnQtNjE0NzQ3NDA5IiwKICAgICAgImh0dHBzOi8vZ2l0aHViLmNvbS9vcGVuLXdhL3dhLWF1dG9tYXRlLW5vZGVqcy9pc3N1ZXMvMjk3I2lzc3VlY29tbWVudC02MTIxODM4NDkiLAogICAgICAiaHR0cHM6Ly9naXRodWIuY29tL29wZW4td2Evd2EtYXV0b21hdGUtbm9kZWpzL2lzc3Vlcy8zMDQjaXNzdWVjb21tZW50LTYxMjk3NTAwMyIsCiAgICAgICJodHRwczovL2dpdGh1Yi5jb20vb3Blbi13YS93YS1hdXRvbWF0ZS1ub2RlanMvaXNzdWVzLzk4I2lzc3VlY29tbWVudC01ODMyMzcxMTUiLAogICAgICAiaHR0cHM6Ly9naXRodWIuY29tL29wZW4td2Evd2EtYXV0b21hdGUtbm9kZWpzL2lzc3Vlcy80MDcjaXNzdWVjb21tZW50LTYyNTA1MjMwNCIsCiAgICAgICJodHRwczovL2dpdGh1Yi5jb20vb3Blbi13YS93YS1hdXRvbWF0ZS1ub2RlanMvaXNzdWVzLzI3NyNpc3N1ZWNvbW1lbnQtNjA5NTM4NzI0IiwKICAgICAgImh0dHBzOi8vZ2l0aHViLmNvbS9vcGVuLXdhL3dhLWF1dG9tYXRlLW5vZGVqcy9pc3N1ZXMvMjYxI2lzc3VlY29tbWVudC02MDk0MDM0MDQiLAogICAgICAiaHR0cHM6Ly9naXRodWIuY29tL29wZW4td2Evd2EtYXV0b21hdGUtbm9kZWpzL2lzc3Vlcy8yNjAjaXNzdWVjb21tZW50LTYwOTU1MDA2NyIsCiAgICAgICJodHRwczovL2dpdGh1Yi5jb20vb3Blbi13YS93YS1hdXRvbWF0ZS1ub2RlanMvaXNzdWVzLzgyI2lzc3VlY29tbWVudC01ODYxMzY5OTIiCiAgICBd"/>
 </div>
 
-# Lazy Loading with a progress circle and hyperlinks
+## Other query params
 
-Since the comments are rendered via puppeteer (takes time, open to suggestions of replacements) it may take a while to load before caching. 
+After much testing, I was unable to make a hyperlinked image work - one which loads the image while also allowing you to click to the original image - in Github markdown. However it works on other websites.
+
+### SVG
+
+`svg=true`
+
+### Lazy Load
+
+Returns a loading SVG which will load the image in the background
+
+`lazy=true`
+
+### Show a specific Comment
+
+It might be a good idea to show a single comment testimonial and then add the link to that known comment in your readme. This will override the `comments` param. You will need to encode the comment URL manually to make this work correctly. [Use this to encode the URL.](https://meyerweb.com/eric/tools/dencoder/)
+
+`specificComment=https%3A%2F%2Fgithub.com%2Fopen-wa%2Fwa-automate-nodejs%2Fissues%2F747%23issuecomment-682116171`
+
+### Custom Cache
+
+By default the cache is set to 2 hours. You can set `noCache=true` to disable it and get a new comment every time, but you can also set a cache custom time period. For example, to set cache to 5 minutes:
+
+`cache_seconds=300`
